@@ -1,0 +1,2 @@
+[2021-02-18T00:01:05.707] [INFO] access - ::1 - - "POST /contact/input HTTP/1.1" 200 7135 "http://localhost:3000/contact/confirm" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36"
+[2021-02-18T00:01:07.793] [INFO] access - ::1 - - "POST /contact/confirm HTTP/1.1" 200 7095 "http://localhost:3000/contact/input" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36"

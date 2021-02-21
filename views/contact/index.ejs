@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>contact</title>
+  <%- include("../_share/stylesheet.ejs") %>
+</head>
+
+<body>
+
+  <%- include("../_share/header.ejs") %>
+    <!--mainコンテンツ-->
+    <main class="container mg">
+
+      <div class="row reset-mg">
+        <div class="main-content" itemscope="https://schema.org/Article">
+          <section class="contact-main" itemprop="articleBody">
+            <h1>お問い合わせ</h1>
+            <form id="form">
+              <!--初回アクセス時にlocals.originalやlocals.errorsは存在しない-->
+              <% var original=locals.original || {}; var message=locals.message || {}%>
+                <% if (locals.message) { %>
+                  <div class="error-message">
+                    入力内容に問題があります。確認して再度お試しください。
+                  </div>
+                  <% } %>
+                    <div class="form-group">
+                      <label for="name">お名前（必須）<% if (message.name) { %><span>※<%= message.name %></span>
+                          <% } %></label>
+                      <input class="form-control" id="name" name="name" type="text" value="<%= original.name %>">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">メールアドレス（必須）<% if (message.email) { %><span>※<%= message.email %></span>
+                          <% } %></label>
+                      <input class="form-control" type="email" name="email" id="email" value="<%= original.email %>">
+                    </div>
+                    <div class="form-group">
+                      <label for="title">題名</label>
+                      <input class="form-control" type="text" name="title" id="title" value="<%= original.title %>">
+                    </div>
+                    <div class="form-group">
+                      <label for="content">メッセージ本文</label>
+                      <textarea class="form-control contact-textarea" name="content" id="content" rows="10"
+                        aria-invalid="false"><%= original.content %></textarea>
+                    </div>
+                    <div>
+                      <input class="btn" type="submit" value="確認" data-method="POST" data-action="/contact/confirm">
+                    </div>
+            </form>
+            <%- include("../_share/sns.ejs") %>
+
+          </section>
+        </div>
+
+        <%- include("../_share/side.ejs") %>
+
+      </div>
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div>
+            <h4>ARCHIVE</h4>
+            <ul>
+              <li></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>TWITTER</h4>
+            <div></div>
+          </div>
+
+        </div>
+      </div>
+      <div class="container end-box">
+        <p class="copy">&copy;2021 sample</p>
+      </div>
+    </footer>
+    <%- include("../_share/javascript.ejs") %>
+      <script src="/public/javascripts/input/index.js"></script>
+      <script src="/public/javascripts/input/jquery.validate.min.js"></script>
+      <script>
+        $(function () {
+          $('#form').validate({
+            rules: {
+              name: {
+                required: true
+              },
+              email: {
+                required: true,
+                email: true
+              },
+            },
+            messages: {
+              name: {
+                required: 'お名前を入力して下さい',
+              },
+              email: {
+                required: 'メールアドレスを入力して下さい',
+                email: 'Eメールの形式で入力して下さい'
+              },
+            }
+          });
+        });
+      </script>
+</body>
+
+</html>

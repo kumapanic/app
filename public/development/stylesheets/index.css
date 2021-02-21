@@ -1,0 +1,609 @@
+@charset "UTF-8";
+
+/*リセットｃｓｓ*/
+
+* {
+  color: #2b2b2b;
+}
+
+*:focus {
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+li {
+  list-style: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.reset-mg {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/*共通*/
+
+body {
+  font-size: 62.5%;
+  background-color: #fff;
+  font-family: "Rubik", sans-serif;
+}
+
+p {
+  color: rgba(51, 51, 51, 0.7);
+}
+
+.title {
+  font-size: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.mg {
+  margin-bottom: 2rem;
+}
+
+/*ヘッダー*/
+
+.header {
+  width: 100%;
+  height: 80px;
+}
+
+.header-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.logo-box {
+  width: 70%;
+}
+
+.logo {
+  margin-left: 2rem;
+  margin-top: 0.5rem;
+  width: 150px;
+  height: 70px;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+
+.search-item {
+  display: inline-block;
+  border: 1px solid #a9a9a9;
+  border-radius: 45px;
+  width: 250px;
+  display: flex;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.search-item:hover {
+  box-shadow: 0px 0px 2px 2px #d3d3d3;
+  transition: all 0.2s;
+}
+
+.search {
+  border-color: transparent;
+  width: 80%;
+}
+
+.search:focus {
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.search-btn {
+  background-color: #fff;
+  border: transparent;
+  width: 20%;
+  overflow: hidden;
+}
+
+.search-icon {
+  width: 25px;
+  height: 25px;
+  opacity: 1;
+}
+
+.search-btn:hover .st0 {
+  transition: all 0.2s;
+  fill: #2792c3;
+}
+
+.st0 {
+  fill: #374149;
+}
+
+/*ナビゲーション*/
+
+.nav {
+  width: 100%;
+  height: 50px;
+}
+
+.nav-bg {
+  background-color: #dcdcdc;
+  width: 100%;
+  height: 50px;
+}
+
+.nav-box {
+  width: 100%;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+.nav-items {
+  width: 25%;
+  text-align: center;
+  height: 100%;
+  border-left: 1px solid #fff;
+}
+
+.boder-right {
+  border-right: 1px solid #fff;
+}
+
+.nav-links {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 1rem;
+}
+
+.nav-links:hover {
+  color: #dcdcdc;
+  background-color: #898989;
+  transition: all 0.5s;
+}
+
+/*人気の記事たち*/
+
+.pop-box {
+  margin-top: 2rem;
+}
+
+.pop-items {
+  position: relative;
+  width: 30%;
+  margin-right: 5%;
+  box-shadow: 0px 0px 0px 1px rgba(102, 102, 102, 0.3);
+  text-align: center;
+}
+
+.pop-mg {
+  margin-right: 0;
+}
+
+.pop-items:hover {
+  box-shadow: 0px 0px 3px 4px rgba(102, 102, 102, 0.3);
+  transition: 0.5s;
+}
+
+.pop-image {
+  max-width: 100%;
+}
+
+.pop-link {
+  width: 100%;
+  display: inline-block;
+}
+
+.title-text_color {
+  color: #2b2b2b;
+}
+
+/*メインコンテンツ*/
+
+.main-content {
+  margin: 3rem 5% 0 0;
+  width: 70%;
+}
+
+.sub-content {
+  width: 25%;
+  margin-top: 3rem;
+}
+
+.profile-box {
+  box-shadow: 0px 0px 0px 1px rgba(102, 102, 102, 0.3);
+  text-align: center;
+  padding: 1rem;
+}
+
+.profile-img {
+  max-width: 50%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0px 0px 0px 1px rgba(102, 102, 102, 0.3);
+  border-radius: 50%;
+}
+
+.fab {
+  font-size: 2rem;
+  margin-left: 0.5rem;
+}
+
+.fa-twitter {
+  margin: 0;
+  color: #00acee;
+}
+
+.fa-instagram {
+  color: #d93177;
+}
+
+.fa-facebook {
+  color: #1877f2;
+}
+
+.sub-title {
+  background-color: #d3d3d3;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+.favorite-box {
+  box-shadow: 0px 0px 0px 1px rgba(102, 102, 102, 0.3);
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.footer {
+  width: 100%;
+  background-color: #d3d3d3;
+}
+
+.end-box {
+  text-align: center;
+}
+
+.copy {
+  padding: 1rem;
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+/*記事一覧HOME*/
+
+.article-list {
+  width: 100%;
+  box-shadow: 0px 0px 0px 1px rgba(102, 102, 102, 0.3);
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+
+.article-list:hover {
+  box-shadow: 0px 0px 3px 4px rgba(102, 102, 102, 0.3);
+  transition: 0.5s;
+}
+
+.article-list-img {
+  width: 100%;
+  height: 300px;
+}
+
+.article-list-title {
+  color: rgba(51, 51, 51, 0.9);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.article-list-text {
+  font-size: 1.3rem;
+  display: inline-block;
+  text-align: left;
+  padding: 2rem 3rem;
+}
+
+.article-list-date {
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+/*記事ページ*/
+
+.article-page {
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+  box-shadow: 0px 0px 0px 1px rgba(102, 102, 102, 0.3);
+}
+
+.article-date {
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  color: rgba(51, 51, 51, 0.7);
+}
+
+.article-title {
+  color: rgba(51, 51, 51, 0.9);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.article-img {
+  width: 100%;
+  height: 400px;
+}
+
+.article-container {
+  padding: 2rem;
+}
+
+.article-sub-title {
+  position: relative;
+  padding: 1rem;
+  font-size: 2.2rem;
+  color: #478384;
+  margin-bottom: 2rem;
+}
+
+.article-container > p {
+  font-size: 1rem;
+}
+
+.article-sub-title:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  height: 10px;
+  content: "";
+  background-image: -webkit-repeating-linear-gradient(
+    135deg,
+    #478384,
+    #478384 1px,
+    transparent 2px,
+    transparent 5px
+  );
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #478384,
+    #478384 1px,
+    transparent 2px,
+    transparent 5px
+  );
+  background-size: 7px 7px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/*blogページ*/
+
+.page-link {
+  color: #00ac97;
+  font-size: 1rem;
+  padding: 1rem;
+  box-shadow: 0px 0px 0px 1px rgba(102, 102, 102, 0.3);
+}
+
+.page-link:hover {
+  color: #00ac97;
+}
+
+.page-link:focus {
+  box-shadow: none;
+}
+
+/*ブログページのエラー*/
+
+.blog-err p {
+  margin-top: 3rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.blog-err {
+  box-shadow: 0px 0px 0px 1px rgba(102, 102, 102, 0.3);
+}
+
+.profile-main {
+  width: 100%;
+  box-shadow: 0px 0px 0px 1px rgba(102, 102, 102, 0.3);
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+
+.profile-main-img {
+  width: 100%;
+  height: 400px;
+}
+
+.profile-main-date {
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  color: rgba(51, 51, 51, 0.7);
+}
+
+.profile-main-container {
+  padding: 2rem;
+}
+
+.profile-main-container > p {
+  font-size: 1rem;
+}
+
+.profile-main-container > h2 {
+  position: relative;
+  padding: 1rem;
+  font-size: 2.2rem;
+  color: #478384;
+  margin-bottom: 2rem;
+}
+
+.profile-main-container > h2:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  height: 10px;
+  content: "";
+  background-image: -webkit-repeating-linear-gradient(
+    135deg,
+    #478384,
+    #478384 1px,
+    transparent 2px,
+    transparent 5px
+  );
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #478384,
+    #478384 1px,
+    transparent 2px,
+    transparent 5px
+  );
+  background-size: 7px 7px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.profile-main-title {
+  color: rgba(51, 51, 51, 0.9);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.sns-box {
+  margin-top: 3rem;
+}
+
+.sns-btn {
+  display: inline-block;
+  width: 30%;
+  padding: 1rem 1rem 1rem 1rem;
+  margin: 0 auto;
+  background-color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.sns-icon {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.Twitter-btn {
+  color: #00acee;
+  box-shadow: 0px 0px 0px 1px #00acee;
+}
+
+.Facebook-btn {
+  color: #1877f2;
+  box-shadow: 0px 0px 0px 1px #1877f2;
+}
+
+.Instagram-btn {
+  color: #d93177;
+  box-shadow: 0px 0px 0px 1px #d93177;
+}
+
+.Twitter-btn:hover {
+  color: #00acee;
+}
+
+.Instagram-btn:hover {
+  color: #d93177;
+}
+
+.Facebook-btn:hover {
+  color: #1877f2;
+}
+
+.Twitter-btn:hover {
+  box-shadow: 0px 0px 0px 2.5px rgba(0, 172, 238, 0.5);
+}
+
+.Facebook-btn:hover {
+  box-shadow: 0px 0px 0px 2.5px rgba(24, 119, 242, 0.5);
+}
+
+.Instagram-btn:hover {
+  box-shadow: 0px 0px 0px 2.5px rgba(217, 49, 119, 0.5);
+}
+
+/*お問い合わせ*/
+
+.contact-main {
+  width: 100%;
+  box-shadow: 0px 0px 0px 1px rgba(102, 102, 102, 0.3);
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  padding: 1rem 3rem 2rem 3rem;
+  margin-bottom: 3rem;
+}
+
+.contact-main h1 {
+  text-align: center;
+}
+
+.contact-textarea {
+  resize: none;
+}
+
+.contact-main label {
+  font-size: 1rem;
+}
+
+.error-message {
+  border: 2px solid #dc143c;
+  border-radius: 5px;
+  background-color: rgba(220, 20, 60, 0.2);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 1rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group span {
+  color: #dc143c;
+}
+
+label.error {
+  color: #dc143c;
+}
+
+/*footer*/
+
+footer {
+  text-align: center;
+}
+
+.footer-twitter {
+  width: 50%;
+}
+
+.footer-archive {
+  width: 50%;
+}
+
+.footer-twitter-title,
+.footer-archive-title {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

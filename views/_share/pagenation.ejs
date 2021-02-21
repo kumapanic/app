@@ -1,0 +1,26 @@
+<nav>
+  <% if (pagenation.current==1) {%>
+    <ul class="pagination d-flex justify-content-end">
+      <li class="page-item"><a class="page-link" href="/article/page=<%= pagenation.current + 1 %>">次のページ</a>
+      </li>
+
+      <% } else if (pagenation.current==2) {%>
+        <ul class="pagination d-flex justify-content-between">
+          <li class="page-item"><a class="page-link" href="/article/">前のページ</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="/article/page=<%= pagenation.current + 1 %>">次のページ</a>
+          </li>
+          <% } else if (pagenation.max> pagenation.current) { %>
+            <ul class="pagination d-flex justify-content-between">
+              <li class="page-item"><a class="page-link" href="/article/page=<%= pagenation.current - 1 %>">前のページ</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="/article/page=<%= pagenation.current + 1 %>">次のページ</a>
+              </li>
+              <% } else if (pagenation.max=pagenation.current) { %>
+                <ul class="pagination d-flex justify-content-end">
+                  <li class="page-item"><a class="page-link"
+                      href="/article/page=<%= pagenation.current - 1 %>">前のページ</a>
+                  </li>
+                  <%}%>
+                </ul>
+</nav>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= list[0].title %>
+  </title>
+  <%- include("../_share/stylesheet.ejs") %>
+</head>
+
+<body>
+
+  <%- include("../_share/header.ejs") %>
+    <!--mainコンテンツ-->
+    <main class="container mg">
+      <div class="row reset-mg">
+        <div class="main-content article-page">
+          <%# 連想配列内の呼び出し方 list[x].key　%>
+            <div class="article-date">
+              <%= list[0].updatedAt %>
+            </div>
+            <h1 class="article-title text-center">
+              <%= list[0].title %>
+            </h1>
+            <img class="article-img" src="/public<%= list[0].image %>" alt="">
+            <div class="article-container">
+              <p>
+                <%= list[0].contetn1 %>
+              </p>
+              <h2 class="article-sub-title">
+                <%= list[0].subtitle1 %>
+              </h2>
+              <p>
+                <%= list[0].content2 %>
+              </p>
+              <h2 class="article-sub-title">
+                <%= list[0].subtitle2 %>
+              </h2>
+              <p>
+                <%= list[0].content3 %>
+              </p>
+              <h2 class="article-sub-title">
+                <%= list[0].subtitle3 %>
+              </h2>
+              <p>
+                <%= list[0].content4 %>
+              </p>
+              <h2 class="article-sub-title">
+                <%= list[0].subtitle4 %>
+              </h2>
+              <p>
+                <%= list[0].content5 %>
+              </p>
+              <h2 class="article-sub-title">
+                <%= list[0].subtitle5 %>
+              </h2>
+              <p>
+                <%= list[0].content6 %>
+              </p>
+              <%- include("../_share/sns.ejs") %>
+
+            </div>
+
+        </div>
+
+        <%- include("../_share/side.ejs") %>
+
+      </div>
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row reset-mg">
+          <div>
+            <h4>ARCHIVE</h4>
+            <ul>
+              <li></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>TWITTER</h4>
+            <div></div>
+          </div>
+
+        </div>
+      </div>
+      <div class="container end-box">
+        <p class="copy">&copy;2021 sample</p>
+      </div>
+    </footer>
+
+</body>
+
+</html>

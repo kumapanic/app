@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>profile</title>
+  <%- include("../_share/stylesheet.ejs") %>
+</head>
+
+<body>
+
+  <%- include("../_share/header.ejs") %>
+    <!--mainコンテンツ-->
+    <main class="container mg">
+
+      <div class="row reset-mg">
+        <div class="main-content" itemscope="https://schema.org/Article">
+          <section class="profile-main" itemprop="articleBody">
+            <time class="profile-main-date" itemprop="datePublished">2021/xx/xx</time>
+            <h1 class=" profile-main-title">○○のプロフィール</h1>
+            <img class="profile-main-img" src="/public/image/sample.jpg" alt="sample.jpg">
+            <div class="profile-main-container">
+              <p>sampletext</p>
+              <p>sampletext</p>
+              <h2>sub-title</h2>
+              <p>sampletext</p>
+              <p>sampletext</p>
+              <h2>sub-title2</h2>
+              <p>sub-text</p>
+              <p>sampletext</p>
+              <p>..etc</p>
+              <%- include("../_share/sns.ejs") %>
+            </div>
+          </section>
+        </div>
+
+        <%- include("../_share/side.ejs") %>
+
+      </div>
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div>
+            <h4>ARCHIVE</h4>
+            <ul>
+              <li></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>TWITTER</h4>
+            <div></div>
+          </div>
+
+        </div>
+      </div>
+      <div class="container end-box">
+        <p class="copy">&copy;2021 sample</p>
+      </div>
+    </footer>
+
+</body>
+
+</html>

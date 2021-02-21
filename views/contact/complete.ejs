@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>contact</title>
+  <%- include("../_share/stylesheet.ejs") %>
+</head>
+
+<body>
+
+  <%- include("../_share/header.ejs") %>
+    <!--mainコンテンツ-->
+    <main class="container mg">
+
+      <div class="row reset-mg">
+        <div class="main-content" itemscope="https://schema.org/Article">
+          <section class="contact-main" itemprop="articleBody">
+            <h1>お問い合わせ</h1>
+            <p>お問い合わせ完了しました！有難うございます</p>
+            <%- include("../_share/sns.ejs") %>
+
+          </section>
+        </div>
+
+        <%- include("../_share/side.ejs") %>
+
+      </div>
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div>
+            <h4>ARCHIVE</h4>
+            <ul>
+              <li></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>TWITTER</h4>
+            <div></div>
+          </div>
+
+        </div>
+      </div>
+      <div class="container end-box">
+        <p class="copy">&copy;2021 sample</p>
+      </div>
+    </footer>
+    <%- include("../_share/javascript.ejs") %>
+      <script src="/public/javascripts/input/index.js"></script>
+</body>
+
+</html>
