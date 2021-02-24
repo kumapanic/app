@@ -13,8 +13,7 @@ var createRegistData = (body) => {
     name: body.name,
     email: body.email,
     title: body.title,
-    content: body.content,
-    createdAt: dateTime,
+    content: body.content
   };
 };
 

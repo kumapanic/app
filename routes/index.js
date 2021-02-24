@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var db = require("../models/index.js");
+var original = require("../lib/format/formatDate.js");
+var archive = require("../lib/archive/archive.js");
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -10,7 +12,10 @@ router.get('/', function (req, res, next) {
     ],
     limit: 10
   }).then((result) => {
-    res.render("./index.ejs", { list: result });
+    var list = original(result);
+    var date = archive;
+    console.log(date);
+    res.render("./index.ejs", { list: list, archiveDate: date});
   }).catch((error) => {
     console.log(error);
     throw error;

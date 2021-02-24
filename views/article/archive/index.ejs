@@ -4,42 +4,19 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>blog</title>
-  <%- include("./_share/stylesheet.ejs") %>
-
+  <%- include("../_share/stylesheet.ejs") %>
 </head>
 
 <body>
 
-  <%- include("./_share/header.ejs") %>
+  <%- include("../_share/header.ejs") %>
+
     <!--mainコンテンツ-->
     <main class="container mg">
 
-      <div class="row pop-box reset-mg">
-
-        <div class="pop-items">
-          <a class="pop-link" href="">
-            <img class="pop-image" src="/public/image/sample.jpg" alt="">
-            <h2 class="title title-text_color">サンプルタイトル</h2>
-          </a>
-        </div>
-        <div class="pop-items">
-          <a class="pop-link" href="">
-            <img class="pop-image" src="/public/image/sample.jpg" alt="">
-            <h2 class="title title-text_color">サンプルタイトル</h2>
-          </a>
-        </div>
-        <div class="pop-items pop-mg">
-          <a class="pop-link" href="">
-            <img class="pop-image" src="/public/image/sample.jpg" alt="">
-            <h2 class="title title-text_color">サンプルタイトル</h2>
-          </a>
-        </div>
-
-      </div>
       <div class="row reset-mg">
         <div class="main-content">
           <% for (var item of list) { %>
-            
             <section class="article-list" itemscope="itemscope" itemtype="https://schema.org/Article">
               <a href="/posts<%= item.url %>">
                 <h2 itemprop="about" class="article-list-title">
@@ -50,20 +27,22 @@
                   <%= item.subcontent %>
                 </p>
                 <p itemprop="dateCreated" class="article-list-date">
-                  <%= item.date %>
+                  <%= item.createdAt %>
                 </p>
               </a>
             </section>
             <% } %>
+
+              <%- include("./_share/pagenation.ejs") %>
         </div>
 
-        <%- include("./_share/side.ejs") %>
+        <%- include("../_share/side.ejs") %>
 
       </div>
 
     </main>
 
-    <%- include("./_share/footer.ejs") %>
+    <%- include("../_share/footer.ejs") %>
 
 </body>
 
