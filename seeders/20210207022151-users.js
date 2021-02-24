@@ -7,7 +7,7 @@ module.exports = {
      *
      * Example:
      */
-    //await queryInterface.bulkInsert('users', users, {});
+    //  await queryInterface.bulkInsert('users', users, {});
 
   },
 

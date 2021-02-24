@@ -1,0 +1,30 @@
+<footer class="footer">
+  <div class="container">
+    <div class="row reset-mg">
+      <div class="footer-archive">
+        <h4 class="footer-archive-title">ARCHIVE</h4>
+        <ul class="archive-list">
+          <% for (var item of archiveDate) { %>
+            <li class="archive-item">
+              <a class="archive-link" href="/article/archive/date=<%= item.url %>"><%= item.date %>（<%= item.count %>）</a>
+            </li>
+            <% } %>
+        </ul>
+      </div>
+
+      <div class="footer-twitter">
+        <h4 class="footer-twitter-title">TWITTER</h4>
+        <div>
+          <a class="twitter-timeline" data-width="350" data-height="400"
+            href="https://twitter.com/test0275?ref_src=twsrc%5Etfw">Tweets by test0275</a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="container end-box">
+    <p class="copy">&copy;2021 sample</p>
+  </div>
+</footer>

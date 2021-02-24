@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require("../models/index.js");
+var original = require("../lib/format/formatDate.js");
 
 router.get("/*", (req, res) => {
   db.posts.findAll({
@@ -11,7 +12,8 @@ router.get("/*", (req, res) => {
     if (result == "") {
       res.render("./error/err.ejs");
     } else {
-      res.render("./posts/index.ejs", { list: result });
+      var list = original(result);
+      res.render("./posts/index.ejs", { list });
     }
   }).catch((error) => {
     console.log(error);

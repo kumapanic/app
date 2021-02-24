@@ -227,3 +227,326 @@ Cannot read property 'name' of undefined
 Cannot read property 'name' of undefined
 [2021-02-19T19:27:04.933] [ERROR] system - Cannot set headers after they are sent to the client
 [2021-02-19T19:27:11.367] [ERROR] system - Cannot set headers after they are sent to the client
+[2021-02-22T11:58:40.541] [ERROR] system - C:\prod\views\index.ejs:66
+    64|     </main>
+    65| 
+ >> 66|     <%- include("./_share/footer.ejs") %>
+    67| 
+    68| </body>
+    69| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% archiveDate.foreach(element => { %>
+    8|           <li><%= element.date %>（<%= element.count %>）</li>
+    9|           <% }); %>
+    10|         </ul>
+
+archiveDate.foreach is not a function
+[2021-02-22T11:58:42.159] [ERROR] system - C:\prod\views\index.ejs:66
+    64|     </main>
+    65| 
+ >> 66|     <%- include("./_share/footer.ejs") %>
+    67| 
+    68| </body>
+    69| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% archiveDate.foreach(element => { %>
+    8|           <li><%= element.date %>（<%= element.count %>）</li>
+    9|           <% }); %>
+    10|         </ul>
+
+archiveDate.foreach is not a function
+[2021-02-22T12:01:33.435] [ERROR] system - C:\prod\views\index.ejs:66
+    64|     </main>
+    65| 
+ >> 66|     <%- include("./_share/footer.ejs") %>
+    67| 
+    68| </body>
+    69| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|           <li><%= item.date %>（<%= item.count %>）</li>
+    9|           <% } %>
+    10|         </ul>
+
+archiveDate is not iterable
+[2021-02-22T12:01:33.999] [ERROR] system - C:\prod\views\index.ejs:66
+    64|     </main>
+    65| 
+ >> 66|     <%- include("./_share/footer.ejs") %>
+    67| 
+    68| </body>
+    69| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|           <li><%= item.date %>（<%= item.count %>）</li>
+    9|           <% } %>
+    10|         </ul>
+
+archiveDate is not iterable
+[2021-02-22T12:01:34.382] [ERROR] system - C:\prod\views\index.ejs:66
+    64|     </main>
+    65| 
+ >> 66|     <%- include("./_share/footer.ejs") %>
+    67| 
+    68| </body>
+    69| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|           <li><%= item.date %>（<%= item.count %>）</li>
+    9|           <% } %>
+    10|         </ul>
+
+archiveDate is not iterable
+[2021-02-22T12:01:34.545] [ERROR] system - C:\prod\views\index.ejs:66
+    64|     </main>
+    65| 
+ >> 66|     <%- include("./_share/footer.ejs") %>
+    67| 
+    68| </body>
+    69| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|           <li><%= item.date %>（<%= item.count %>）</li>
+    9|           <% } %>
+    10|         </ul>
+
+archiveDate is not iterable
+[2021-02-22T12:01:34.718] [ERROR] system - C:\prod\views\index.ejs:66
+    64|     </main>
+    65| 
+ >> 66|     <%- include("./_share/footer.ejs") %>
+    67| 
+    68| </body>
+    69| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|           <li><%= item.date %>（<%= item.count %>）</li>
+    9|           <% } %>
+    10|         </ul>
+
+archiveDate is not iterable
+[2021-02-22T12:02:44.435] [ERROR] system - C:\prod\views\index.ejs:66
+    64|     </main>
+    65| 
+ >> 66|     <%- include("./_share/footer.ejs") %>
+    67| 
+    68| </body>
+    69| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|           <li><%= item.date %>（<%= item.count %>）</li>
+    9|           <% } %>
+    10|         </ul>
+
+archiveDate is not iterable
+[2021-02-22T12:02:45.491] [ERROR] system - C:\prod\views\index.ejs:66
+    64|     </main>
+    65| 
+ >> 66|     <%- include("./_share/footer.ejs") %>
+    67| 
+    68| </body>
+    69| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|           <li><%= item.date %>（<%= item.count %>）</li>
+    9|           <% } %>
+    10|         </ul>
+
+archiveDate is not iterable
+[2021-02-22T12:02:46.466] [ERROR] system - C:\prod\views\index.ejs:66
+    64|     </main>
+    65| 
+ >> 66|     <%- include("./_share/footer.ejs") %>
+    67| 
+    68| </body>
+    69| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|           <li><%= item.date %>（<%= item.count %>）</li>
+    9|           <% } %>
+    10|         </ul>
+
+archiveDate is not iterable
+[2021-02-22T12:02:46.667] [ERROR] system - C:\prod\views\index.ejs:66
+    64|     </main>
+    65| 
+ >> 66|     <%- include("./_share/footer.ejs") %>
+    67| 
+    68| </body>
+    69| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|           <li><%= item.date %>（<%= item.count %>）</li>
+    9|           <% } %>
+    10|         </ul>
+
+archiveDate is not iterable
+[2021-02-22T12:02:46.847] [ERROR] system - C:\prod\views\index.ejs:66
+    64|     </main>
+    65| 
+ >> 66|     <%- include("./_share/footer.ejs") %>
+    67| 
+    68| </body>
+    69| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|           <li><%= item.date %>（<%= item.count %>）</li>
+    9|           <% } %>
+    10|         </ul>
+
+archiveDate is not iterable
+[2021-02-22T12:02:49.296] [ERROR] system - C:\prod\views\index.ejs:66
+    64|     </main>
+    65| 
+ >> 66|     <%- include("./_share/footer.ejs") %>
+    67| 
+    68| </body>
+    69| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|           <li><%= item.date %>（<%= item.count %>）</li>
+    9|           <% } %>
+    10|         </ul>
+
+archiveDate is not iterable
+[2021-02-23T17:48:49.902] [ERROR] system - C:\prod\views\profile\index.ejs:43
+    41|     </main>
+    42| 
+ >> 43|     <%- include("../_share/footer.ejs") %>
+    44| 
+    45| </body>
+    46| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|             <li>
+    9|               <%= item.date %>（<%= item.count %>）
+    10|             </li>
+
+archiveDate is not defined
+[2021-02-23T17:50:20.904] [ERROR] system - C:\prod\views\profile\index.ejs:43
+    41|     </main>
+    42| 
+ >> 43|     <%- include("../_share/footer.ejs") %>
+    44| 
+    45| </body>
+    46| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|             <li>
+    9|               <%= item.date %>（<%= item.count %>）
+    10|             </li>
+
+archiveDate is not defined
+[2021-02-23T17:50:27.534] [ERROR] system - C:\prod\views\contact\index.ejs:62
+    60|     </main>
+    61| 
+ >> 62|     <%- include("../_share/footer.ejs") %>
+    63|     <%- include("../_share/javascript.ejs") %>
+    64|       <script src="/public/javascripts/input/index.js"></script>
+    65|       <script src="/public/javascripts/input/jquery.validate.min.js"></script>
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|             <li>
+    9|               <%= item.date %>（<%= item.count %>）
+    10|             </li>
+
+archiveDate is not defined
+[2021-02-23T17:50:30.159] [ERROR] system - C:\prod\views\article\index.ejs:45
+    43|     </main>
+    44| 
+ >> 45|     <%- include("../_share/footer.ejs") %>
+    46| 
+    47| </body>
+    48| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul>
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|             <li>
+    9|               <%= item.date %>（<%= item.count %>）
+    10|             </li>
+
+archiveDate is not defined
+[2021-02-23T18:21:34.191] [ERROR] system - C:\prod\views\profile\index.ejs:43
+    41|     </main>
+    42| 
+ >> 43|     <%- include("../_share/footer.ejs") %>
+    44| 
+    45| </body>
+    46| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul class="archive-list">
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|             <li class="archive-item">
+    9|               <a class="archive-link" href="#"><%= item.date %>（<%= item.count %>）</a>
+    10|             </li>
+
+archiveDate is not defined
+[2021-02-24T10:37:28.661] [ERROR] system - C:\prod\views\posts\index.ejs:74
+    72|     </main>
+    73| 
+ >> 74|     <%- include("../_share/footer.ejs") %>
+    75| 
+    76| </body>
+    77| 
+
+C:\prod\views\_share\footer.ejs:7
+    5|         <h4 class="footer-archive-title">ARCHIVE</h4>
+    6|         <ul class="archive-list">
+ >> 7|           <% for (var item of archiveDate) { %>
+    8|             <li class="archive-item">
+    9|               <a class="archive-link" href="#"><%= item.date %>（<%= item.count %>）</a>
+    10|             </li>
+
+archiveDate is not defined
