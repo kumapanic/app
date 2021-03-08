@@ -16,15 +16,15 @@
       <div class="row reset-mg">
         <div class="main-content" itemscope="https://schema.org/Article">
           <section class="contact-main" itemprop="articleBody">
-            <h1>お問い合わせ</h1>
+            <h1>お問い合わせ確認画面</h1>
             <form>
               <!--初回アクセス時にlocals.originalやlocals.errorsは存在しない-->
               <div class="form-group">
-                <label for="name">お名前</label>
+                <label for="name">お名前（必須）</label>
                 <input class="form-control" id="name" name="name" type="text" value="<%= original.name %>">
               </div>
               <div class="form-group">
-                <label for="email">メールアドレス</label>
+                <label for="email">メールアドレス（必須）</label>
                 <input class="form-control" type="email" name="email" id="email" value="<%= original.email %>">
               </div>
               <div class="form-group">
@@ -36,9 +36,9 @@
                 <textarea class="form-control contact-textarea" name="content" id="content" rows="10"
                   aria-invalid="false"><%= original.content %></textarea>
               </div>
-              <div class="form-group row">
-                <input class="btn" type="submit" value="登録" data-method="POST" data-action="/contact/execute">
+              <div class="form-group row reset-mg contact-btn-group">
                 <input class="btn" type="submit" value="戻る" data-method="POST" data-action="/contact/input">
+                <input class="btn regist-btn" type="submit" value="登録" data-method="POST" data-action="/contact/execute">
               </div>
             </form>
             <%- include("../_share/sns.ejs") %>
@@ -53,8 +53,8 @@
     </main>
 
     <%- include("../_share/footer.ejs") %>
-    <%- include("../_share/javascript.ejs") %>
-      <script src="/public/javascripts/input/index.js"></script>
+      <%- include("../_share/javascript.ejs") %>
+        <script src="/public/javascripts/input/index.js"></script>
 </body>
 
 </html>

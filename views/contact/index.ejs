@@ -45,7 +45,8 @@
                         aria-invalid="false"><%= original.content %></textarea>
                     </div>
                     <div>
-                      <input class="btn" type="submit" value="確認" data-method="POST" data-action="/contact/confirm">
+                      <input class="btn conf-btn" type="submit" value="確認" data-method="POST"
+                        data-action="/contact/confirm">
                     </div>
             </form>
             <%- include("../_share/sns.ejs") %>
@@ -60,33 +61,8 @@
     </main>
 
     <%- include("../_share/footer.ejs") %>
-    <%- include("../_share/javascript.ejs") %>
-      <script src="/public/javascripts/input/index.js"></script>
-      <script src="/public/javascripts/input/jquery.validate.min.js"></script>
-      <script>
-        $(function () {
-          $('#form').validate({
-            rules: {
-              name: {
-                required: true
-              },
-              email: {
-                required: true,
-                email: true
-              },
-            },
-            messages: {
-              name: {
-                required: 'お名前を入力して下さい',
-              },
-              email: {
-                required: 'メールアドレスを入力して下さい',
-                email: 'Eメールの形式で入力して下さい'
-              },
-            }
-          });
-        });
-      </script>
+      <%- include("../_share/javascript.ejs") %>
+        <script src="/public/javascripts/input/index.js"></script>
 </body>
 
 </html>

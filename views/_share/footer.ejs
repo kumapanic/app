@@ -3,13 +3,17 @@
     <div class="row reset-mg">
       <div class="footer-archive">
         <h4 class="footer-archive-title">ARCHIVE</h4>
-        <ul class="archive-list">
-          <% for (var item of archiveDate) { %>
-            <li class="archive-item">
-              <a class="archive-link" href="/article/archive/date=<%= item.url %>"><%= item.date %>（<%= item.count %>）</a>
-            </li>
-            <% } %>
-        </ul>
+        <div class="archive-box">
+          <ul class="archive-list">
+            <% for (var item of archiveDate) { %>
+              <li class="archive-item">
+                <a class="archive-link" href="/article/archive/date=<%= item.url %>">
+                  <%= item.date %>（<%= item.count %>）
+                </a>
+              </li>
+              <% } %>
+          </ul>
+        </div>
       </div>
 
       <div class="footer-twitter">
@@ -24,6 +28,7 @@
 
     </div>
   </div>
+  <hr>
   <div class="container end-box">
     <p class="copy">&copy;2021 sample</p>
   </div>

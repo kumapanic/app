@@ -13,9 +13,7 @@ router.get('/', function (req, res, next) {
     limit: 10
   }).then((result) => {
     var list = original(result);
-    var date = archive;
-    console.log(date);
-    res.render("./index.ejs", { list: list, archiveDate: date});
+    res.render("./index.ejs", { list: list, archiveDate: archive });
   }).catch((error) => {
     console.log(error);
     throw error;

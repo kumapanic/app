@@ -1,30 +1,42 @@
 var accesslogger = require("./lib/log/accesslogger.js");
 var systemlogger = require("./lib/log/systemlogger.js");
-var createError = require('http-errors');
+var { SESSION_SECRET } = require("./config/app.config.js").security;
+var archive = require("./lib/archive/archive.js");
+var accountcontrol = require("./lib/security/acountcontrol.js");
 var express = require('express');
 var path = require('path');
+var loger = require("morgan");
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-console.log("モード：" + process.env.NODE_ENV);
+var bodyParser = require("body-parser");
+var session = require("express-session");
+var flash = require("connect-flash");
 
 var app = express();
+
+console.log("モード：" + process.env.NODE_ENV);
 
 // view engine setup
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
-
 app.disable("x-powerd-by");
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 //配信するファイルを指定している
 app.use("/public", express.static(__dirname + "/public/" + (process.env.NODE_ENV === "development" ? "development" : "production")));
 
 //アクセスログ
 app.use(accesslogger());
+app.use(loger('dev'));
+
+app.use(cookieParser());
+app.use(session({
+  secret: SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  name: "sid"
+}));
+app.use(bodyParser.urlencoded({ extended: false }));// サーバー側の処理
+app.use(bodyParser.json());
+app.use(flash());
+app.use(...accountcontrol.initialize());//...分割代入
 
 app.use("/", (() => {
   var router = express.Router();
@@ -38,6 +50,7 @@ app.use("/", (() => {
   router.use("/search/", require("./routes/search.js"));
   router.use("/profile/", require("./routes/profile.js"));
   router.use("/contact/", require("./routes/contact.js"));
+  router.use("/account/", require("./routes/account.js"));
   router.use("/", require("./routes/index.js"));
 
   return router;
@@ -46,15 +59,40 @@ app.use("/", (() => {
 //システムログ
 app.use(systemlogger());
 
-// error handler
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use((req, res, next) => { //404のページを出力する
+  var data = {
+    method: req.method,
+    protocol: req.protocol,
+    version: req.httpVersion,
+    url: req.url
+  };
+  res.status(404);
+  if (req.xhr) { //ajaxのリクエストがされたかどうか
+    res.json(data);
+  } else {
+    res.render("./404.ejs", { archiveDate: archive });
+  }
+});
 
-  // render the error page
-  res.status(err.status || 500);
-  res.send(err);
+app.use((err, req, res, next) => { //500のページ
+  var data = {
+    method: req.method,
+    protocol: req.protocol,
+    version: req.httpVersion,
+    url: req.url,
+    error: (process.env.NODE_ENV === "development") ? {
+      name: err.name,
+      message: err.message,
+      stack: err.stack
+    } : undefined
+  };
+  res.status(500);
+  if (req.xhr) {
+    res.json(data);
+  } else {
+    console.log(err);
+    res.render("./500.ejs");
+  }
 });
 
 module.exports = app;

@@ -1,6 +1,6 @@
 'use strict';
 
-var posts = require("../lib/database/posts-list-1.js")
+var privileges = require("../lib/database/privileges-list.js");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -8,9 +8,12 @@ module.exports = {
      * Add seed commands here.
      *
      * Example:
-     */
-    //await queryInterface.bulkInsert('posts', posts, {});
-
+     * await queryInterface.bulkInsert('People', [{
+     *   name: 'John Doe',
+     *   isBetaMember: false
+     * }], {});
+    */
+    await queryInterface.bulkInsert('privileges', privileges, {});
   },
 
   down: async (queryInterface, Sequelize) => {
