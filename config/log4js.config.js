@@ -1,4 +1,4 @@
-var path = require("path");　　//環境に依存しないようにするため？
+var path = require("path"); //環境に依存しないようにするため？
 var ROOT = path.join(__dirname, "../");  //ロートディレクトリの絶対パスを取得
 
 module.exports = {

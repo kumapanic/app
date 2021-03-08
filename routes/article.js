@@ -4,7 +4,8 @@ const sequelize = new Sequelize(config[process.env.NODE_ENV]);
 var express = require('express');
 var router = express.Router();
 var db = require("../models/index.js");
-const date = require('../lib/archive/archive');
+var original = require("../lib/format/formatDate.js");
+const archive = require('../lib/archive/archive.js');
 
 var onePage = function (req, res) {
   db.posts.findAndCountAll({
@@ -14,14 +15,16 @@ var onePage = function (req, res) {
     limit: 5
   }).then((result) => {
     var lastpage = (result.count > 0) ? Math.ceil(result.count / 5) : 1;
+    var list = original(result.rows);
     var data = {
       count: result.count,
-      list: result.rows,
+      list: list,
       pagenation: {
         max: lastpage,
         current: 1
-      }
-    }
+      },
+      archiveDate: archive
+    };
     res.render("./article/index.ejs", data);
   }).catch((error) => {
     console.log(error);
@@ -32,7 +35,6 @@ var onePage = function (req, res) {
 var pagenation = function (req, res) {
   var page = req.params.page ? parseInt(req.params.page) : 1;
   var numif = isNaN(page);
-  //console.log(req.params);
   db.posts.findAndCountAll({
     order: [
       ["createdAt", "desc"]
@@ -41,100 +43,105 @@ var pagenation = function (req, res) {
     limit: 5
   }).then((result) => {
     var lastpage = (result.count > 0) ? Math.ceil(result.count / 5) : 1;
-    // console.log(lastpage);
-    // console.log(numif);
-    //console.log(result.rows);
+    var list = original(result.rows);
     var data = {
       count: result.count,
-      list: result.rows,
+      list: list,
       pagenation: {
         max: lastpage,
         current: page
-      }
+      },
+      archiveDate: archive
     }
-    //console.log(data);
     //存在しないページをユーザーから指定されたときの処理
     if (numif == true || lastpage < page) {
-      res.render("./error/err.ejs");
+      res.render("./error/err.ejs", { archiveDate: archive });
     } else {
       res.render("./article/index.ejs", data);
     }
   }).catch((error) => {
     console.log(error);
-    res.render("./error/err.ejs");
+    res.render("./error/err.ejs", { archiveDate: archive });
     throw error;
   });
 };
-
 
 //1ページ処理
 router.get("/", (req, res) => {
   onePage(req, res);
 });
 
-
 //2ページ以降のページング処理
 router.get('/page=:page', (req, res) => {
   if (req.params.page == 1) {
     onePage(req, res);
+  } else if (req.params.page == 0) {
+    res.render("./error/err.ejs", { archiveDate: archive });
   } else {
     pagenation(req, res);
   }
 });
 
-//archiveの件数取得
-var archiveCount = function (url) {
-  var count;
-  sequelize.query(`select count(*) from posts where date_format(createdAt,'%Y%m')=${url}`).then(result => {
-    count = result;
-  });
-  return count;
-};
 //archiveの1ページの処理
-var archiveOnePage = function (req, res) {
-  sequelize.query(`select * from posts where date_format(createdAt,'%Y%m')=${req.params.url} order by createAt desc limit 5`)
+var archiveOnePage = (req, res) => {
+  sequelize.query(`select * from posts where date_format(createdAt,'%Y%m')=${req.params.url} order by createdAt desc limit 5`)
     .then(result => {
-      var lastpage = (result.count > 0) ? Math.ceil(result.count / 5) : 1;
-      var count = archiveCount(req.params.url);
-      var data = {
-        count: count,
-        list: result,
-        pagenation: {
-          max: lastpage,
-          current: 1
-        }
-      };
-      res.render("./article/archive/index.js", data);
+      sequelize.query(`select count(*) as count from posts where date_format(createdAt,'%Y%m')=${req.params.url}`).then(num => {
+        var lastpage = (num[0][0].count > 0) ? Math.ceil(num[0][0].count / 5) : 1;
+        var list = original(result[0]);
+        var data = {
+          count: num[0][0].count,
+          list: list,
+          pagenation: {
+            max: lastpage,
+            current: 1
+          },
+          archiveDate: archive
+        };
+        res.render("./article/archive/index.ejs", data);
+      }).catch((error) => {
+        console.log(error);
+        res.render("./error/err.ejs", { archiveDate: archive });
+        throw error;
+      });
     }).catch((error) => {
       console.log(error);
-      res.render("./error/err.ejs");
+      res.render("./error/err.ejs", { archiveDate: archive });
       throw error;
     });
 };
 
-var archivePagenation = function (req, res) {
+//archiveのページネーション
+var archivePagenation = (req, res) => {
   var page = req.params.page ? parseInt(req.params.page) : 1;
-  var numif = isNaN(page);
-  sequelize.query(`select * from posts where date_format(createdAt,'%Y%m')=${req.params.url} order by createAt desc limit 5, ${page * 5}`)
+  sequelize.query(`select * from posts where date_format(createdAt,'%Y%m')=${req.params.url} order by createdAt desc limit ${page * 5},5`)
     .then((result) => {
-      var count = archiveCount(req.params.url);
-      var lastpage = (count > 0) ? Math.ceil(count / 5) : 1;
-      var data = {
-        count: count,
-        list: result,
-        pagenation: {
-          max: lastpage,
-          current: page
+      sequelize.query(`select count(*) as count from posts where date_format(createdAt,'%Y%m')=${req.params.url}`).then(num => {
+        var numif = isNaN(page);
+        var lastpage = (num[0][0].count > 0) ? Math.ceil(num[0][0].count / 5) : 1;
+        var list = original(result[0]);
+        var data = {
+          count: num[0][0].count,
+          list: list,
+          pagenation: {
+            max: lastpage,
+            current: page
+          },
+          archiveDate: archive
+        };
+        if (numif == true || lastpage < page) {
+          res.render("./error/err.ejs", { archiveDate: archive });
+        } else {
+          res.render("./article/archive/index.ejs", data);
         }
-      };
-      if (numif == true || lastpage < page) {
-        res.render("./error/err.ejs");
-      } else {
-        res.render("./article/archive/index.js", data);
-      }
+      }).catch((error) => {
+        console.log(error);
+        res.render("./error/err.ejs", { archiveDate: archive });
+        throw error;
+      });
     }).catch((error) => {
       console.log(error);
-      res.render("./error/err.ejs");
+      res.render("./error/err.ejs", { archiveDate: archive });
       throw error;
     });
 };
@@ -145,9 +152,11 @@ router.get("/archive/date=:url", (req, res) => {
 });
 
 //2ページ以降のアーカイブ
-router.get("/archive/date=:url/page=:page", (req, res) => {
+router.get("/archive/url=:url/page=:page", (req, res) => {
   if (req.params.page == 1) {
     archiveOnePage(req, res);
+  } else if (req.params.page == 0) {
+    res.render("./error/err.ejs", { archiveDate: archive });
   } else {
     archivePagenation(req, res);
   }

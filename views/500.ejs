@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>500エラー</title>
+  <%- include("./_share/stylesheet.ejs") %>
+</head>
+
+<body>
+  <!--mainコンテンツ-->
+  <main class="main-content-error">
+    <div>
+      <h1>500<span class="color-glay">&nbsp;Interal&nbsp;Server&nbsp;Error</span>
+      </h1>
+      <strong class="message-str">サーバーエラーが発生しました</strong>
+      <p class="message-sub">サーバーの問題でお探しのページを表示できません。</p>
+      <p class="message-sub">恐れ入りますが再度時間を置いてアクセスしてください。</p>
+      <a class="back-link back-link-500" href="#" onclick="window.history.back()">前のページに戻る</a>
+    </div>
+  </main>
+
+</body>
+
+</html>
