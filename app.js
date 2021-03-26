@@ -10,6 +10,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var flash = require("connect-flash");
+var fileUpload = require("express-fileupload");
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.disable("x-powerd-by");
 //配信するファイルを指定している
 app.use("/public", express.static(__dirname + "/public/" + (process.env.NODE_ENV === "development" ? "development" : "production")));
+app.use(fileUpload());
 
 //アクセスログ
 app.use(accesslogger());
@@ -50,7 +52,8 @@ app.use("/", (() => {
   router.use("/search/", require("./routes/search.js"));
   router.use("/profile/", require("./routes/profile.js"));
   router.use("/contact/", require("./routes/contact.js"));
-  router.use("/account/", require("./routes/account.js"));
+  router.use("/account/", require("./routes/account/account.js"));
+  router.use("/account/article-posting", require("./routes/account/post.js"));
   router.use("/", require("./routes/index.js"));
 
   return router;
