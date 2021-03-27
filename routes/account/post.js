@@ -28,10 +28,10 @@ var createRegistData = (body, image) => {
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, `./public/${process.env.NODE_ENV}/image`);
+    cb(null, `./public/${process.env.NODE_ENV}/image`)
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, file.originalname)
   }
 });
 
@@ -49,30 +49,32 @@ router.post("/execute", postRegistValidator(), upload.single('file'), (req, res)
   //   throw new Error("Invalid Token.");
   // }
 
-  var original = createRegistData(req.body, req.files.file.name);
+  // var original = createRegistData(req.body, req.files.file.name);
   var errors = validationResult(req);
 
-  //バリデート時にエラーがあった場合の処理
-  if (!errors.isEmpty()) {
-    var message = {};
-    errors.errors.forEach(error => {
-      message[`${error.param}`] = error.msg;
-    });
-    res.render("./account/posts/index.ejs", { message, original });
-    return;
-  }
+  res.send(req.);
 
-  //mysql内に保存する処理
-  db.posts.create(original)
-    .then(result => {
-      // delete req.session._csrf; //サーバーからtokenを削除
-      // res.clearCookie("._csrf"); //coolieからtokenを削除
-      res.redirect("/account/article-posting/complete");
-    }).catch((error) => {
-      console.log(error);
-      res.redirect("/account/article-posting/error");
-      throw error;
-    });
+  // //バリデート時にエラーがあった場合の処理
+  // if (!errors.isEmpty()) {
+  //   var message = {};
+  //   errors.errors.forEach(error => {
+  //     message[`${error.param}`] = error.msg;
+  //   });
+  //   res.render("./account/posts/index.ejs", { message, original });
+  //   return;
+  // }
+
+  // //mysql内に保存する処理
+  // db.posts.create(original)
+  //   .then(result => {
+  //     // delete req.session._csrf; //サーバーからtokenを削除
+  //     // res.clearCookie("._csrf"); //coolieからtokenを削除
+  //     res.redirect("/account/article-posting/complete");
+  //   }).catch((error) => {
+  //     console.log(error);
+  //     res.redirect("/account/article-posting/error");
+  //     throw error;
+  //   });
 });
 
 //完了画面
