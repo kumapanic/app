@@ -6,11 +6,26 @@ var { validationResult, body } = require('express-validator');
 var postRegistValidator = require("../../lib/validate/postRegistValidator.js");
 var { authenticate, authorize } = require("../../lib/security/acountcontrol.js");
 
+var formatImagename = async (image) => {
+  var sampleDate = (date, format) => {
+    format = format.replace(/YYYY/, date.getFullYear());
+    format = format.replace(/MM/, date.getMonth() + 1);
+    format = format.replace(/DD/, date.getDate());
+    return format;
+  };
+  var date = new Date();
+  var formatDate = await sampleDate(date, 'YYYY/MM/DD');
+  var imageName = image + formatDate;
+
+  return imageName;
+};
+
 var createRegistData = (body, image) => {
+  var imagename = formatImagename(file.originalname)
   return {
     url: body.url,
     title: body.title,
-    image: image,
+    image: imagename,
     subtitle1: body.subtitle1,
     subtitle2: body.subtitle2,
     subtitle3: body.subtitle3,
@@ -31,50 +46,55 @@ var storage = multer.diskStorage({
     cb(null, `./public/${process.env.NODE_ENV}/image`)
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname)
+    var filename = formatImagename(file.originalname);
+    cb(null, filename)
   }
 });
 
 var upload = multer({ storage: storage })
 
 router.get("/", (req, res) => {
-  res.render("./account/posts/index.ejs");
+  tokens.secret((error, secret) => {  //secretを生成
+    var token = tokens.create(secret); //引数にsecretを渡して対になるtokenを生成する
+    req.session._csrf = secret; //secretを保存
+    res.cookie("_csrf", token); //cookieにtokenを保存
+    res.render("./account/posts/index.ejs");
+  });
 });
 
 router.post("/execute", postRegistValidator(), upload.single('file'), (req, res) => {
-  // var secret = req.session._csrf; //保存したsecretを取り出す
-  // var token = req.cookies._csrf; //保存したtokenを取り出す
-  // if (tokens.verify(secret, token) === false) { //secretとtokenがあっているか検証
-  //   res.redirect("/contact/error");
-  //   throw new Error("Invalid Token.");
-  // }
+  var secret = req.session._csrf; //保存したsecretを取り出す
+  var token = req.cookies._csrf; //保存したtokenを取り出す
+  if (tokens.verify(secret, token) === false) { //secretとtokenがあっているか検証
+    res.redirect("/account/article-posting/error");
+    throw new Error("Invalid Token.");
+  }
 
-  // var original = createRegistData(req.body, req.files.file.name);
+  var original = createRegistData(req.body, req.files.file.name);
   var errors = validationResult(req);
 
-  res.send(req.);
+  //バリデート時にエラーがあった場合の処理
+  if (!errors.isEmpty()) {
+    var message = {};
+    errors.errors.forEach(error => {
+      message[`${error.param}`] = error.msg;
+    });
+    res.render("./account/posts/index.ejs", { message, original });
+    return;
+  }
 
-  // //バリデート時にエラーがあった場合の処理
-  // if (!errors.isEmpty()) {
-  //   var message = {};
-  //   errors.errors.forEach(error => {
-  //     message[`${error.param}`] = error.msg;
-  //   });
-  //   res.render("./account/posts/index.ejs", { message, original });
-  //   return;
-  // }
-
-  // //mysql内に保存する処理
-  // db.posts.create(original)
-  //   .then(result => {
-  //     // delete req.session._csrf; //サーバーからtokenを削除
-  //     // res.clearCookie("._csrf"); //coolieからtokenを削除
-  //     res.redirect("/account/article-posting/complete");
-  //   }).catch((error) => {
-  //     console.log(error);
-  //     res.redirect("/account/article-posting/error");
-  //     throw error;
-  //   });
+  //mysql内に保存する処理
+  db.posts.create(original)
+    .then(result => {
+      delete req.session._csrf; //サーバーからtokenを削除
+      res.clearCookie("._csrf"); //coolieからtokenを削除
+      console.log("--sucsess--");
+      res.redirect("/account/article-posting/complete");
+    }).catch((error) => {
+      console.log(error);
+      res.redirect("/account/article-posting/error");
+      throw error;
+    });
 });
 
 //完了画面

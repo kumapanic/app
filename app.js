@@ -7,10 +7,8 @@ var express = require('express');
 var path = require('path');
 var loger = require("morgan");
 var cookieParser = require('cookie-parser');
-var bodyParser = require("body-parser");
 var session = require("express-session");
 var flash = require("connect-flash");
-var fileUpload = require("express-fileupload");
 
 var app = express();
 
@@ -22,7 +20,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.disable("x-powerd-by");
 //配信するファイルを指定している
 app.use("/public", express.static(__dirname + "/public/" + (process.env.NODE_ENV === "development" ? "development" : "production")));
-app.use(fileUpload());
 
 //アクセスログ
 app.use(accesslogger());
@@ -35,8 +32,8 @@ app.use(session({
   saveUninitialized: true,
   name: "sid"
 }));
-app.use(bodyParser.urlencoded({ extended: false }));// サーバー側の処理
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));// サーバー側の処理
+app.use(express.json());
 app.use(flash());
 app.use(...accountcontrol.initialize());//...分割代入
 
