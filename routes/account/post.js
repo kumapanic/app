@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router();
 var tokens = require("csrf")();
 var multer = require("multer");
-var { validationResult, body } = require('express-validator');
+var db = require("../../models/index.js");
+var { validationResult } = require('express-validator');
 var postRegistValidator = require("../../lib/validate/postRegistValidator.js");
-var { authenticate, authorize } = require("../../lib/security/acountcontrol.js");
+var { authorize } = require("../../lib/security/acountcontrol.js");
 
 var formatImagename = async (image) => {
   var sampleDate = (date, format) => {
@@ -53,7 +54,7 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage })
 
-router.get("/", (req, res) => {
+router.get("/", authorize("readWrite"), (req, res) => {
   tokens.secret((error, secret) => {  //secretを生成
     var token = tokens.create(secret); //引数にsecretを渡して対になるtokenを生成する
     req.session._csrf = secret; //secretを保存
@@ -62,7 +63,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/execute", postRegistValidator(), upload.single('file'), (req, res) => {
+router.post("/execute", authorize("readWrite"), postRegistValidator(), upload.single('file'), (req, res) => {
   var secret = req.session._csrf; //保存したsecretを取り出す
   var token = req.cookies._csrf; //保存したtokenを取り出す
   if (tokens.verify(secret, token) === false) { //secretとtokenがあっているか検証
@@ -98,11 +99,11 @@ router.post("/execute", postRegistValidator(), upload.single('file'), (req, res)
 });
 
 //完了画面
-router.get("/complete", (req, res) => { //getで受け取って画面を表示
+router.get("/complete", authorize("readWrite"), (req, res) => { //getで受け取って画面を表示
   res.render("./account/posts/complete.ejs");
 });
 
-router.get("/error", (req, res) => {
+router.get("/error", authorize("readWrite"), (req, res) => {
   res.render("./account/posts/error.ejs");
 });
 
