@@ -48,7 +48,7 @@
               <div class="form-group">
                 <label for="url">URL（必須）<% if (message.url) { %><span>※<%= message.url %></span>
                   <% } %></label>
-                <input class="form-control" id="url" name="url" type="text">
+                <input class="form-control" id="url" name="url" type="text" value="<%= original.url %>"> 
               </div>
               <div class="form-group">
                 <label for="file">イメージ（必須）<% if (message.file) { %><span>※<%= message.file %></span>
@@ -58,57 +58,57 @@
               <div class="form-group">
                 <label for="overview">記事概要（必須）<% if (message.overview) { %><span>※<%= message.overview %></span>
                   <% } %></label>
-                <textarea class="form-control" name="overview" id="overview" cols="30" rows="3"></textarea>
+                <textarea class="form-control" name="overview" id="overview" cols="30" rows="3"><%= original.subcontent %></textarea>
               </div>
               <div class="form-group">
                 <label for="title">タイトル（必須）<% if (message.title) { %><span>※<%= message.title %></span>
                   <% } %></label>
-                <input class="form-control" name="title" id="title" type="text">
+                <input class="form-control" name="title" id="title" type="text" value="<%= original.title %>">
               </div>
               <div class="form-group">
                 <label for="content">コンテンツ（必須）<% if (message.content) { %><span>※<%= message.content %></span>
                   <% } %></label>
-                <textarea class="form-control" name="content" id="content" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="content" id="content" cols="30" rows="5"><%= original.content1 %></textarea>
               </div>
               <div class="form-group">
                 <label for="subtitle1">サブタイトル1</label>
-                <input class="form-control" name="subtitle1" id="subtitle1" type="text">
+                <input class="form-control" name="subtitle1" id="subtitle1" type="text" value="<%= original.subtitle1 %>">
               </div>
               <div class="form-group">
                 <label for="subcontent1">サブコンテンツ１</label>
-                <textarea class="form-control" name="subcontent1" id="subcontent1" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="subcontent1" id="subcontent1" cols="30" rows="5"><%= original.content2 %></textarea>
               </div>
               <div class="form-group">
                 <label for="subtitle2">サブタイトル２</label>
-                <input class="form-control" name="subtitle2" id="subtitle2" type="text">
+                <input class="form-control" name="subtitle2" id="subtitle2" type="text" value="<%= original.subtitle2 %>">
               </div>
               <div class="form-group">
                 <label for="subcontent2">サブコンテンツ２</label>
-                <textarea class="form-control" name="subcontent2" id="subcontent2" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="subcontent2" id="subcontent2" cols="30" rows="5"><%= original.content3 %></textarea>
               </div>
               <div class="form-group">
                 <label for="subtitle3">サブタイトル３</label>
-                <input class="form-control" name="subtitle3" id="subtitle3" type="text">
+                <input class="form-control" name="subtitle3" id="subtitle3" type="text" value="<%= original.title3 %>">
               </div>
               <div class="form-group">
                 <label for="subcontent3">サブコンテンツ３</label>
-                <textarea class="form-control" name="subcontent3" id="subcontent3" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="subcontent3" id="subcontent3" cols="30" rows="5"><%= original.content4 %></textarea>
               </div>
               <div class="form-group">
                 <label for="subtitle4">サブタイトル４</label>
-                <input class="form-control" name="subtitle4" id="subtitle4" type="text">
+                <input class="form-control" name="subtitle4" id="subtitle4" type="text" value="<%= original.subtitle4 %>">
               </div>
               <div class="form-group">
                 <label for="subcontent4">サブコンテンツ４</label>
-                <textarea class="form-control" name="subcontent4" id="subcontent4" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="subcontent4" id="subcontent4" cols="30" rows="5"><%= original.content5 %></textarea>
               </div>
               <div class="form-group">
                 <label for="subtitle5">サブタイトル５</label>
-                <input class="form-control" name="subtitle5" id="subtitle5" type="text">
+                <input class="form-control" name="subtitle5" id="subtitle5" type="text" value="<%= original.subtitle5 %>">
               </div>
               <div class="form-group">
                 <label for="subcontent5">サブコンテンツ５</label>
-                <textarea class="form-control" name="subcontent5" id="subcontent5" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="subcontent5" id="subcontent5" cols="30" rows="5"><%= original.content6 %></textarea>
               </div>
               <div class="mt-3 mb-3">
                 <input class="btn btn-primary text-end" type="submit" value="確認">

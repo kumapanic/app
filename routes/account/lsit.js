@@ -1,11 +1,16 @@
-var Sequelize = require('sequelize');
-var config = require("../config/config.json");
-var sequelize = new Sequelize(config[process.env.NODE_ENV]);
 var express = require('express');
 var router = express.Router();
-var db = require("../models/index.js");
-var original = require("../lib/format/formatDate.js");
-var archive = require('../lib/archive/archive.js');
+var Sequelize = require('sequelize');
+var config = require("../../config/config.json");
+var sequelize = new Sequelize(config[process.env.NODE_ENV]);
+var express = require('express');
+var db = require("../../models/index.js");
+var { authorize } = require("../../lib/security/acountcontrol.js");
+
+router.get("/", authorize("readWrite"), (req, res) => {
+
+  res.render("./account/list/index.ejs");
+});
 
 var onePage = function (req, res) {
   db.posts.findAndCountAll({
