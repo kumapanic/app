@@ -51,7 +51,7 @@ app.use("/", (() => {
   router.use("/contact/", require("./routes/contact.js"));
   router.use("/account/", require("./routes/account/account.js"));
   router.use("/account/article-posting", require("./routes/account/post.js"));
-  router.use("/account/article-list",require("./routes/account/list.js"));
+  router.use("/account/article-list", require("./routes/account/list.js"));
   router.use("/", require("./routes/index.js"));
 
   return router;
