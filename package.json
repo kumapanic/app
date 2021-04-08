@@ -18,7 +18,7 @@
     "express-fileupload": "^1.2.1",
     "express-session": "^1.17.1",
     "express-validator": "^6.9.2",
-    "http-errors": "~1.6.3",
+    "http-errors": "^1.6.3",
     "jquery-validation": "^1.19.3",
     "log4js": "^2.11.0",
     "morgan": "^1.10.0",

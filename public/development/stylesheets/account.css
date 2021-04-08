@@ -124,3 +124,9 @@ right: 0;
 .posting-form .form-group {
   margin-bottom: 0.5rem;
 }
+
+/*記事一覧*/
+
+.table-img {
+  width: 150px;
+}
