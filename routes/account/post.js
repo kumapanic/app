@@ -7,22 +7,21 @@ var { validationResult } = require('express-validator');
 var postRegistValidator = require("../../lib/validate/postRegistValidator.js");
 var { authorize } = require("../../lib/security/acountcontrol.js");
 
-var formatImagename = async (image) => {
-  var sampleDate = (date, format) => {
-    format = format.replace(/YYYY/, date.getFullYear());
-    format = format.replace(/MM/, date.getMonth() + 1);
-    format = format.replace(/DD/, date.getDate());
-    return format;
-  };
+var formatImagename = (image) => {
   var date = new Date();
-  var formatDate = await sampleDate(date, 'YYYY/MM/DD');
-  var imageName = image + formatDate;
-
+  var year = date.getFullYear();
+  var mon = date.getMonth() + 1;
+  var day = date.getDate();
+  var hours = date.getHours();
+  var min = date.getMinutes();
+  var sec = date.getSeconds();
+  var format = year + mon + day + hours + min + sec;
+  var imageName = format + image;
   return imageName;
 };
 
 var createRegistData = (body, image) => {
-  var imagename = formatImagename(file.originalname)
+  var imagename = formatImagename(image);
   return {
     url: body.url,
     title: body.title,
@@ -71,9 +70,10 @@ router.post("/execute", authorize("readWrite"), postRegistValidator(), upload.si
     throw new Error("Invalid Token.");
   }
 
-  var original = createRegistData(req.body, req.files.file.name);
-  var errors = validationResult(req);
+  console.log(req.body);
 
+  var original = createRegistData(req.body, req.file.filename);
+  var errors = validationResult(req);
   //バリデート時にエラーがあった場合の処理
   if (!errors.isEmpty()) {
     var message = {};

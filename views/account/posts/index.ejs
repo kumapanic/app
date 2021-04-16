@@ -39,8 +39,7 @@
               <h1 class="h2">記事投稿</h1>
             </div>
             <% var original=locals.original || {}; var message=locals.message || {}%>
-              <form action="/account/article-posting/execute" method="POST" class="p-3 posting-form"
-                enctype="multipart/form-data">
+              <form action="/account/article-posting/execute" method="POST" class="p-3 posting-form" enctype="multipart/form-data">
                 <% if (locals.message) { %>
                   <div class="error-message">
                     入力内容に問題があります。確認して再度お試しください。
@@ -54,7 +53,7 @@
                     <div class="form-group">
                       <label for="file">イメージ（必須）<% if (message.file) { %><span>※<%= message.file %></span>
                           <% } %></label>
-                      <input class="form-control" id="file" name="file" type="file">
+                      <input class="form-control" id="file" name="file" type="file" accept="">
                     </div>
                     <div class="form-group">
                       <label for="overview">記事概要（必須）<% if (message.overview) { %><span>※<%= message.overview %></span>
@@ -124,7 +123,7 @@
                         rows="5"><%= original.content6 %></textarea>
                     </div>
                     <div class="mt-3 mb-3">
-                      <input class="btn btn-primary text-end" type="submit" value="確認" onclick="this.disabled = true;">
+                      <input class="btn btn-primary text-end" type="submit" value="確認">
                     </div>
               </form>
           </main>
@@ -136,22 +135,24 @@
           if (window.performance.navigation.type == 2) location.reload();
         });
 
-        $(function () {
-          function t() {
-            var a, b, c, d, e;
-            a = $("#url").val();
-            b = $("#overview").val();
-            c = $("#title").val();
-            d = $("#content").val();
-            e = $("#file").val();
-            if (a && b && c && d && e) {
-              $("input[type=submit]").prop("disabled", false);
-            } else {
-              $("input[type=submit]").prop("disabled", true);
-            }
-          }
-          $("#url,#overview,#title,#content,#file").change(t);
-        });
+        // $(function () {
+        //   function t() {
+        //     var a, b, c, d, e;
+        //     a = $("#url").val();
+        //     b = $("#overview").val();
+        //     c = $("#title").val();
+        //     d = $("#content").val();
+        //     e = $("#file").val();
+        //     if (a && b && c && d && e) {
+        //       $("input[type=submit]").prop("disabled", false);
+        //     } else {
+        //       $("input[type=submit]").prop("disabled", true);
+        //     }
+        //   }
+        //   $(document).ready(function () {
+        //     $("#url,#overview,#title,#content,#file").change(t);
+        //   });
+        // });
       </script>
 </body>
 
