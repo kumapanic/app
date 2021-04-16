@@ -23,7 +23,7 @@ var onePage = (req, res) => {
       count: result.count,
       list: list,
       pagenation: {
-        max: lastpage,
+        max: lastpage - 1,
         current: 1
       }
     };
@@ -51,7 +51,7 @@ var pagenation = (req, res) => {
       count: result.count,
       list: list,
       pagenation: {
-        max: lastpage,
+        max: lastpage - 1,
         current: page
       }
     }

@@ -1,26 +1,62 @@
-<nav>
-  <% if (pagenation.current==1) {%>
-    <ul class="pagination d-flex justify-content-end">
-      <li class="page-item"><a class="page-link" href="/account/article-list/page=<%= pagenation.current + 1 %>">次のページ</a>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <% if (pagenation.current == 1) {%>
+      <li class="page-item disabled">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
       </li>
-
-      <% } else if (pagenation.current==2) {%>
-        <ul class="pagination d-flex justify-content-between">
-          <li class="page-item"><a class="page-link" href="/account/article-list/">前のページ</a>
+      <% for (var i = 0 ; i < pagenation.max ; i++ ) { %>
+        <% var a = i + 1 ; %>
+        <% if (pagenation.current == a) { %>
+        <li class="page-item disabled"><a class="page-link" href="/account/article-list/page=<%= a %>"><%= a %></a></li>
+        <% } else { %>
+        <li class="page-item"><a class="page-link" href="/account/article-list/page=<%= a %>"><%= a %></a></li>
+        <% } %>
+      <% } %>
+          <li class="page-item">
+            <a class="page-link" href="/account/article-list/page=<%= pagenation.current + 1 %>" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
           </li>
-          <li class="page-item"><a class="page-link" href="/account/article-list/page=<%= pagenation.current + 1 %>">次のページ</a>
+    <% } else if (pagenation.max > pagenation.current) {%>
+      <li class="page-item">
+        <a class="page-link" href="/account/article-list/page=<%= pagenation.current - 1 %>" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <% for (var i = 0 ; i < pagenation.max ; i++ ) { %>
+        <% var a = i + 1 ; %>
+        <% if (pagenation.current == a) { %>
+        <li class="page-item disabled"><a class="page-link" href="/account/article-list/page=<%= a %>"><%= a %></a></li>
+        <% } else { %>
+        <li class="page-item"><a class="page-link" href="/account/article-list/page=<%= a %>"><%= a %></a></li>
+        <% } %>
+      <% } %>
+          <li class="page-item">
+            <a class="page-link" href="/account/article-list/page=<%= pagenation.current + 1 %>" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
           </li>
-          <% } else if (pagenation.max> pagenation.current) { %>
-            <ul class="pagination d-flex justify-content-between">
-              <li class="page-item"><a class="page-link" href="/account/article-list/page=<%= pagenation.current - 1 %>">前のページ</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="/account/article-list/page=<%= pagenation.current + 1 %>">次のページ</a>
-              </li>
-              <% } else if (pagenation.max=pagenation.current) { %>
-                <ul class="pagination d-flex justify-content-end">
-                  <li class="page-item"><a class="page-link"
-                      href="/account/article-list/page=<%= pagenation.current - 1 %>">前のページ</a>
-                  </li>
-                  <%}%>
-                </ul>
+    <% } else if (pagenation.max=pagenation.current) { %>
+      <li class="page-item">
+        <a class="page-link" href="/account/article-list/page=<%= pagenation.current - 1 %>" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <% for(var i = 0 ; i < pagenation.max ; i++ ) { %>
+        <% var a = i + 1 ; %>
+        <% if (pagenation.current == a) { %>
+        <li class="page-item disabled"><a class="page-link" href="/account/article-list/page=<%= a %>"><%= a %></a></li>
+        <% } else { %>
+        <li class="page-item"><a class="page-link" href="/account/article-list/page=<%= a %>"><%= a %></a></li>
+        <% } %>
+      <% } %>
+          <li class="page-item disabled">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+    <% } %>
+  </ul>
 </nav>

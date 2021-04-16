@@ -44,6 +44,7 @@
               <table class="table table-light table-hover">
                 <thead>
                   <tr>
+                    <th>イメージ</th>
                     <th>タイトル</th>
                     <th>作成日</th>
                     <th>概要</th>
@@ -53,38 +54,61 @@
                 <tbody>
                   <% for (var item of list) { %>
                     <tr>
-                      <a href="">
-                        <td class="d-flex">
-                          <img class="table-img" src="/public<%= item.image %>" alt="">
-                          <div class="align-middle">
-                            <%= item.title %>
+                      <td>
+                        <img class="table-img" src="/public<%= item.image %>" alt="">
+                      </td>
+                      <td class="align-middle">
+                        <%= item.title %>
+                      </td>
+                      <td class="align-middle">
+                        <%= item.subcontent %>
+                      </td>
+                      <td class="align-middle">
+                        <%= item.date %>
+                      </td>
+                      <td class="align-middle">
+                        <button class="btn btn-danger me-2 delete">削除</button>
+                        <div class="popup">
+                          <div class="content">
+                            <p>サンプルテキスト、サンプルテキスト、サンプルテキスト、サンプルテキスト</p>
+                            <button class="btn btn-primary close">閉じる</button>
+                            <button class="btn btn-danger">削除する</button>
                           </div>
-                        </td>
-                        <td class="align-middle">
-                          <%= item.subcontent %>
-                        </td>
-                        <td class="align-middle">
-                          <%= item.date %>
-                        </td>
-                        <td class="align-middle"><a href="">削除</a><a href="">編集</a></td>
-                      </a>
+                        </div>
+                        <a class="btn btn-primary" href="/account/article<%= item.url %>">編集</a>
+                      </td>
                     </tr>
                     <% } %>
                 </tbody>
               </table>
+
               <%- include("./pagenation.ejs") %>
 
             </div>
           </main>
       </div>
     </div>
+
+    <%- include("../_share/javascript.ejs") %>
+
     <script>
       window.addEventListener('pageshow', () => {
         if (window.performance.navigation.type == 2) location.reload();
       });
+
+      $(".delete").on("click", function () {
+        $(".popup")
+          .addClass("show")
+          .fadeIn();
+        // return false;
+      });
+
+      $(".close").on("click", function () {
+        $(".popup").fadeOut();
+        // return false;
+      });
     </script>
 
-    <%- include("../_share/javascript.ejs") %>
 </body>
 
 </html>
