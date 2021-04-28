@@ -41,33 +41,33 @@
             <% var original=locals.original || {}; var message=locals.message || {}%>
               <form action="/account/article-posting/execute" method="POST" class="p-3 posting-form" enctype="multipart/form-data">
                 <% if (locals.message) { %>
-                  <div class="error-message">
+                  <div class="alert alert-danger">
                     入力内容に問題があります。確認して再度お試しください。
                   </div>
                   <% } %>
                     <div class="form-group">
-                      <label for="url">URL（必須）<% if (message.url) { %><span>※<%= message.url %></span>
+                      <label for="url">URL<span class="posting-reqiured">（必須）</span><% if (message.url) { %><span>※<%= message.url %></span>
                           <% } %></label>
                       <input class="form-control" id="url" name="url" type="text" value="<%= original.url %>">
                     </div>
                     <div class="form-group">
-                      <label for="file">イメージ（必須）<% if (message.file) { %><span>※<%= message.file %></span>
+                      <label for="file">イメージ<span class="posting-reqiured">（必須）</span><% if (message.file) { %><span>※<%= message.file %></span>
                           <% } %></label>
                       <input class="form-control" id="file" name="file" type="file" accept="">
                     </div>
                     <div class="form-group">
-                      <label for="overview">記事概要（必須）<% if (message.overview) { %><span>※<%= message.overview %></span>
+                      <label for="overview">記事概要<span class="posting-reqiured">（必須）</span><% if (message.overview) { %><span>※<%= message.overview %></span>
                           <% } %></label>
                       <textarea class="form-control" name="overview" id="overview" cols="30"
                         rows="3"><%= original.subcontent %></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="title">タイトル（必須）<% if (message.title) { %><span>※<%= message.title %></span>
+                      <label for="title">タイトル<span class="posting-reqiured">（必須）</span><% if (message.title) { %><span>※<%= message.title %></span>
                           <% } %></label>
                       <input class="form-control" name="title" id="title" type="text" value="<%= original.title %>">
                     </div>
                     <div class="form-group">
-                      <label for="content">コンテンツ（必須）<% if (message.content) { %><span>※<%= message.content %></span>
+                      <label for="content">コンテンツ<span class="posting-reqiured">（必須）</span><% if (message.content) { %><span>※<%= message.content %></span>
                           <% } %></label>
                       <textarea class="form-control" name="content" id="content" cols="30"
                         rows="5"><%= original.content1 %></textarea>
