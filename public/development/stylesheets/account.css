@@ -125,6 +125,22 @@ right: 0;
   margin-bottom: 0.5rem;
 }
 
+.posting-form  span {
+  color: #ff2d2d;
+}
+
+.posting-form textarea  {
+  resize: none;
+}
+
+.posting-required {
+  color: #ff2d2d;
+}
+
+.complete-text {
+  font-size: 1.3rem;
+}
+
 /*記事一覧*/
 
 .table-img {
@@ -135,11 +151,11 @@ right: 0;
   display: none;
   height: 100vh;
   width: 100%;
-  background:rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 120  ;
+  z-index: 120;
 }
 
 .content {

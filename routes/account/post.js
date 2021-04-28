@@ -3,19 +3,13 @@ var router = express.Router();
 var tokens = require("csrf")();
 var multer = require("multer");
 var db = require("../../models/index.js");
-var { validationResult } = require('express-validator');
 var postRegistValidator = require("../../lib/validate/postRegistValidator.js");
 var { authorize } = require("../../lib/security/acountcontrol.js");
+require("date-utils");
 
 var formatImagename = (image) => {
-  var date = new Date();
-  var year = date.getFullYear();
-  var mon = date.getMonth() + 1;
-  var day = date.getDate();
-  var hours = date.getHours();
-  var min = date.getMinutes();
-  var sec = date.getSeconds();
-  var format = year + mon + day + hours + min + sec;
+  var dt = new Date();
+  var format = dt.toFormat("YYYYMMDDHH24MISS");
   var imageName = format + image;
   return imageName;
 };
@@ -51,7 +45,21 @@ var storage = multer.diskStorage({
   }
 });
 
-var upload = multer({ storage: storage })
+var upload = multer(
+  {
+    storage: storage,
+    includeEmptyFields: true,
+    fileFilter: (req, file, cb) => {
+      if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
+        cb(null, true);
+      } else {
+        req.fileValidationError = 'png・jpg・jpegファイルを選択してください';
+        return cb(null, false);
+      }
+    }
+  });
+
+
 
 router.get("/", authorize("readWrite"), (req, res) => {
   tokens.secret((error, secret) => {  //secretを生成
@@ -62,27 +70,16 @@ router.get("/", authorize("readWrite"), (req, res) => {
   });
 });
 
-router.post("/execute", authorize("readWrite"), postRegistValidator(), upload.single('file'), (req, res) => {
+router.post("/execute", authorize("readWrite"), upload.single('file'), postRegistValidator(), (req, res) => {
   var secret = req.session._csrf; //保存したsecretを取り出す
   var token = req.cookies._csrf; //保存したtokenを取り出す
+
   if (tokens.verify(secret, token) === false) { //secretとtokenがあっているか検証
     res.redirect("/account/article-posting/error");
     throw new Error("Invalid Token.");
   }
 
-  console.log(req.body);
-
   var original = createRegistData(req.body, req.file.filename);
-  var errors = validationResult(req);
-  //バリデート時にエラーがあった場合の処理
-  if (!errors.isEmpty()) {
-    var message = {};
-    errors.errors.forEach(error => {
-      message[`${error.param}`] = error.msg;
-    });
-    res.render("./account/posts/index.ejs", { message, original });
-    return;
-  }
 
   //mysql内に保存する処理
   db.posts.create(original)
