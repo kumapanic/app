@@ -13,12 +13,13 @@ var max_item_per_page = 10;
 var onePage = (req, res) => {
   db.posts.findAndCountAll({
     order: [
-      ["createdAt", "desc"]
+      ["createdAt", "DESC"]
     ],
     limit: max_item_per_page
   }).then((result) => {
     var lastpage = (result.count > 0) ? Math.ceil(result.count / max_item_per_page) : 1;
     var list = original(result.rows);
+    console.log(list);
     var data = {
       count: result.count,
       list: list,
@@ -40,13 +41,14 @@ var pagenation = (req, res) => {
   var numif = isNaN(page);
   db.posts.findAndCountAll({
     order: [
-      ["createdAt", "desc"]
+      ["createdAt", "DESC"]
     ],
     offset: page * max_item_per_page,
     limit: max_item_per_page
   }).then((result) => {
     var lastpage = (result.count > 0) ? Math.ceil(result.count / max_item_per_page) : 1;
     var list = original(result.rows);
+    console.log(list);
     var data = {
       count: result.count,
       list: list,
@@ -83,5 +85,24 @@ router.get('/page=:page', authorize("readWrite"), (req, res) => {
     pagenation(req, res);
   }
 });
+
+//記事削除
+router.post("/delete", authorize("readWrite"), (req, res) => {
+  var id = req.body.id;
+  db.posts.destroy({
+    where: { id: id },
+    logging: (log) => {
+      console.log(log);
+    }
+  }).then((result) => {
+    res.redirect("/account/article-list");
+  }).catch((error) => {
+    console.log(error);
+    res.render("./account/list/err.ejs");
+    throw error;
+  });
+});
+
+  
 
 module.exports = router;

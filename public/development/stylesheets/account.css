@@ -161,11 +161,39 @@ right: 0;
 .content {
   background: #fff;
   padding: 30px;
-  width: 50%;
+  width: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.content p {
+  width: 100%;
 }
 
 .show {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.sort-box {
+  width: 50%;
+}
+
+.sort-form {
+  width: 50%;
+}
+
+.sort-label {
+  width: 100%;
+  font-weight: bold;
+}
+
+.sort-btn {
+  width: 20%;
+}
+
+.form-select {
+  width: 70%;
 }
